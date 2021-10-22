@@ -1,0 +1,10 @@
+node_modules
+.env
+.gitattributes
+
+#Hardhat files
+artifacts
+cache
+
+#OpenZeppelin files
+.openzeppelin

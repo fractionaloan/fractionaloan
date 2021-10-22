@@ -1,0 +1,27 @@
+{
+  "name": "flactionaloan-contracts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "flactionaloan",
+  "license": "MIT",
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "deploy:mainnet_forked": "npx hardhat run --network localhost scripts/deploy.ts",
+    "node": "npx hardhat node",
+  },
+  "devDependencies": {
+    "@ethersproject/bignumber": "^5.4.2",
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-etherscan": "^2.1.6",
+    "@typechain/ethers-v5": "^7.1.2",
+    "@typechain/hardhat": "^2.3.1",
+    "@types/node": "^16.11.1",
+    "dotenv": "^10.0.0",
+    "hardhat": "^2.6.6",
+    "openzeppelin-contracts": "^4.0.0",
+    "prettier": "^2.4.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.18",
+    "ts-node": "^10.3.0",
+    "typescript": "^4.4.4"
+  }
+}
