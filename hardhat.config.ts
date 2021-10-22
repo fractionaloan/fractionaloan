@@ -28,7 +28,8 @@ const config: HardhatUserConfig = {
       // url: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
       gas: "auto", // gasLimit
       gasPrice: 43000000000, // check the latest gas price market in https://www.ethgasstation.info/
-      accounts: [`0x${process.env.DEPLOYMENT_ACCOUNT_PRIVATE_KEY}`]
+      // accounts: [`0x${process.env.DEPLOYMENT_ACCOUNT_PRIVATE_KEY}`] [omar] couldn't figure out how to fix this lol
+      accounts: []
     }
   },
   solidity: {
