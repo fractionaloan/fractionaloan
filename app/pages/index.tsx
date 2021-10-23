@@ -3,12 +3,14 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Footer from '../components/Footer'
 import Head from '../components/Head'
+import Header from '../components/Header';
 
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head/>
       <main className={styles.main}>
+        <Header/>
         <div className="main-logo">
           <Image src="/fractionloan.png" alt="Fractionloan Logo" width={400} height={400} />
         </div>
