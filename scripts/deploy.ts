@@ -37,11 +37,6 @@ async function start() {
   
   const provider = new JsonRpcProvider();
   const wallet = new Wallet(TEST_PRIVATE_KEY, provider);
-  // const [wallet] = await ethers.getSigners(
-
-  // );
-
-
   const goldfinchConfig = new ethers.Contract(
     GOLDFINCH_CONFIG_ADDRESS,
     goldfinchConfigAbi,
@@ -60,6 +55,8 @@ async function start() {
     "myGoldfinchCredit",
     "MGC"
   );
+
+  console.log(`Deployed contract to ${vault.address}`)
   
   console.log("goldfinch")
   // use goldfinch admin signer to approve vault contract and test wallet
@@ -81,6 +78,10 @@ async function start() {
   const poolTokenAsSigner = await poolTokens.connect(nftSigner);
   await poolTokenAsSigner.approve(wallet.address, TOKEN_ID);
   await poolTokenAsSigner.transferFrom(nftSigner._address, wallet.address, TOKEN_ID);
+
+  // Trying to debug why the approval fails.
+  // const poolTokenAsOwner = await poolTokens.connect(wallet.address);
+  // await poolTokenAsOwner.approve(vault.address, TOKEN_ID);
 
   console.log(`Contracts deployed and configured.`);
 
