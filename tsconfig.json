@@ -13,5 +13,10 @@
     "target": "es5"
   },
   "exclude": ["node_modules"],
-  "include": ["scripts/**/*", "environment.d.ts", "hardhat.config.ts"]
+  "include": [
+    "scripts/**/*",
+    "test/**/*",
+    "environment.d.ts",
+    "hardhat.config.ts"
+  ]
 }

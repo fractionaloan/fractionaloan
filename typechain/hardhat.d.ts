@@ -13,15 +13,96 @@ import * as Contracts from ".";
 declare module "hardhat/types/runtime" {
   interface HardhatEthersHelpers extends HardhatEthersHelpersBase {
     getContractFactory(
-      name: "Token",
+      name: "ERC20Upgradeable",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.Token__factory>;
+    ): Promise<Contracts.ERC20Upgradeable__factory>;
+    getContractFactory(
+      name: "IERC20Upgradeable",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20Upgradeable__factory>;
+    getContractFactory(
+      name: "IERC165",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC165__factory>;
+    getContractFactory(
+      name: "IERC721",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC721__factory>;
+    getContractFactory(
+      name: "IERC721Receiver",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC721Receiver__factory>;
+    getContractFactory(
+      name: "Vault",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.Vault__factory>;
+    getContractFactory(
+      name: "ICreditLine",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ICreditLine__factory>;
+    getContractFactory(
+      name: "IPoolTokens",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IPoolTokens__factory>;
+    getContractFactory(
+      name: "ITranchedPool",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ITranchedPool__factory>;
+    getContractFactory(
+      name: "IV2CreditLine",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IV2CreditLine__factory>;
 
     getContractAt(
-      name: "Token",
+      name: "ERC20Upgradeable",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.Token>;
+    ): Promise<Contracts.ERC20Upgradeable>;
+    getContractAt(
+      name: "IERC20Upgradeable",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20Upgradeable>;
+    getContractAt(
+      name: "IERC165",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC165>;
+    getContractAt(
+      name: "IERC721",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC721>;
+    getContractAt(
+      name: "IERC721Receiver",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC721Receiver>;
+    getContractAt(
+      name: "Vault",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.Vault>;
+    getContractAt(
+      name: "ICreditLine",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ICreditLine>;
+    getContractAt(
+      name: "IPoolTokens",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IPoolTokens>;
+    getContractAt(
+      name: "ITranchedPool",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ITranchedPool>;
+    getContractAt(
+      name: "IV2CreditLine",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IV2CreditLine>;
 
     // default types
     getContractFactory(

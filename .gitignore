@@ -11,3 +11,6 @@ cache
 
 #typechain files
 typechain
+
+#vscode config
+.vscode
