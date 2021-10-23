@@ -7,35 +7,35 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Borrower</title>
+        <title>Buyer</title>
         <meta name="description" content="Fractional NFT Loans" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to Fractionaloan
+          Buyer
         </h1>
 
         <p className={styles.description}>
-          Select whether you want to buy or sell a fractioanlized debt obligation.
+          Buy or learn about Goldfinch Debt Obligation.
         </p>
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Borrower &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
+            <h2>Buy &rarr;</h2>
+            {/* <p>Find in-depth information about Next.js features and API.</p> */}
           </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
+          <a href="https://nextjs.org/learn" className={styles.card} style={{'borderColor': '#F39C12'}}>
             <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
+            {/* <p>Learn about Next.js in an interactive course with quizzes!</p> */}
           </a>
         </div>
       </main>
 
       <footer className={styles.footer}>
-        <a
+        {/* <a
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
@@ -44,7 +44,7 @@ const Home: NextPage = () => {
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
-        </a>
+        </a> */}
       </footer>
     </div>
   )
