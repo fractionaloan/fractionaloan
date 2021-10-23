@@ -53,29 +53,23 @@ contract Vault is ERC20Upgradeable, IERC721Receiver, SafeERC20Transfer {
       .availableToWithdraw(tokenId);
     uint256 availableWithdrawAmount = availableInterest.add(availablePrincipal);
     uint256 totalSupply = totalSupply();
-    console.log('total withdraw amount', availableWithdrawAmount);
     uint256 withdrawAmountScaled = availableWithdrawAmount.mul(
       _amount.mul(1e18).div(totalSupply)
     );
     uint256 withdrawAmount = withdrawAmountScaled.div(1e18);
-    console.log('withdraw amount scaled', withdrawAmountScaled);
     return withdrawAmount;
   }
 
-  /// @dev this function transfers USDC from goldfinch'c contract to the vault contract.
-  /// then, the vault contract transfers the USDC to the fractional credit holder who called this method.
+  /// @dev this function:
+  /// 1. burns a sender's erc20 tokens
+  /// 2. transfers USDC from goldfinch'c contract to the vault contract based on the burned token amount
+  /// 3. transfers the USDC from the vault to the erc20 token sender
   function withdrawFractional(uint256 _amount) external returns (uint256) {
-    /// TODO: vault should transfer _amount to itself & burn erc20 tokens before performing tranchedPool.withdraw
     uint256 withdrawAmount = _getWithdrawAmount(_amount);
-    console.log('withdraw amount', withdrawAmount);
+    _burn(msg.sender, _amount);
     (uint256 interest, uint256 principal) = tranchedPool.withdraw(tokenId, withdrawAmount);
     uint256 fundsToDistribute = interest.add(principal);
-    console.log('funds are', fundsToDistribute);
-    uint256 usdcVaultBalance = usdc.balanceOf(address(this));
-    console.log('vault usdc funds are', usdcVaultBalance);
     safeERC20TransferFrom(usdc, address(this), msg.sender, fundsToDistribute);
-    usdcVaultBalance = usdc.balanceOf(address(this));
-    console.log('after transfer, vault usdc funds are', usdcVaultBalance);
   }
 
   function onERC721Received(

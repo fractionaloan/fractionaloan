@@ -122,6 +122,7 @@ describe("Vault", function () {
     const withdrawAmount = await vault._getWithdrawAmount(
       BigNumber.from(25).mul(BigNumber.from(10).pow(18))
     );
+    const beginningDeployerUSDCBalance = await USDCToken.connect(deployer).balanceOf(deployer.address);
     await vault
       .connect(deployer)
       .withdrawFractional(
@@ -133,7 +134,11 @@ describe("Vault", function () {
     expect(vaultBalance.toString()).to.eq(BigNumber.from(0).toString());
 
     // the deployer should have used 25 tokens to claim 25% of the value in USDC
-    const deployerBalance = await USDCToken.connect(deployer).balanceOf(deployer.address);
-    expect(deployerBalance.toString()).to.eq(withdrawAmount.toString());
+    const finalDeployerUSDCBalance: BigNumber = await USDCToken.connect(deployer).balanceOf(deployer.address);
+    expect(finalDeployerUSDCBalance.sub(beginningDeployerUSDCBalance).toString()).to.eq(withdrawAmount.toString());
+
+    // the deployer should have 25 tokens remaining, since they started with 50 and used 25
+    const deployerVaultBalance = await vault.balanceOf(deployer.address);
+    expect(deployerVaultBalance.toString()).to.eq(BigNumber.from(25).mul(BigNumber.from(10).pow(18)).toString());
   });
 });

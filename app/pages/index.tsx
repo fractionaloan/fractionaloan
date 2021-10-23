@@ -11,23 +11,29 @@ const Home: NextPage = () => {
       <Head/>
       <main className={styles.main}>
         <Header/>
-        <h1 className={styles.title}>
-          Welcome to Fractionaloan
-        </h1>
+        <div className="main-logo">
+          <Image src="/fractionloan.png" alt="Fractionloan Logo" width={400} height={400} />
+        </div>
+        {/* <p>
+          Decentralized protocol where lenders fractionalize credit NFT’s
+        </p> */}
+        {/* <h1 className={styles.title}>
+          Fractionaloan
+        </h1> */}
 
         <p className={styles.description}>
-          Select whether you want to buy or sell a fractioanlized debt obligation.
+          Buy or sell fractionalized credit NFT's.
         </p>
 
         <div className={styles.grid}>
-          <a href="/borrower" className={styles.card}>
+          <a href="/borrower" className={styles.card} style={{ }}>
             <h2>Buyer &rarr;</h2>
-            <p> Manage your fractionalized shares.</p>
+            {/* <p> Manage your fractional shares.</p> */}
           </a>
 
-          <a href="/lender" className={styles.card}>
+          <a href="/lender" className={styles.card} style={{'borderColor': '#F39C12'}}>
             <h2>Seller &rarr;</h2>
-            <p>Fractionalize your debt obligation.</p>
+            {/* <p>Fractionalize your debt obligation.</p> */}
           </a>
         </div>
       </main>
