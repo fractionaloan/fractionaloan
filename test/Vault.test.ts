@@ -44,7 +44,7 @@ describe("Vault", function () {
   const TRANCHED_POOL_ADDRESS = "0xefeB69eDf6B6999B0e3f2Fa856a2aCf3bdEA4ab5";
   const TOKEN_ID = 34;
 
-  before("...should make goldfinch contract instances", async function () {
+  before("...should make some contract instances", async function () {
     USDCToken = new ethers.Contract(USDC_TOKEN_ADDRESS, ERC20Abi, deployer);
     goldfinchConfig = new ethers.Contract(
       GOLDFINCH_CONFIG_ADDRESS,
