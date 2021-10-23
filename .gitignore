@@ -8,3 +8,6 @@ cache
 
 #OpenZeppelin files
 .openzeppelin
+
+#typechain files
+typechain
