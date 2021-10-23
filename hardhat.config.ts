@@ -1,5 +1,7 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomiclabs/hardhat-etherscan";
+import "@nomiclabs/hardhat-ethers";
+import "@nomiclabs/hardhat-waffle";
 import "@typechain/ethers-v5";
 import "@typechain/hardhat";
 import dotenv from "dotenv";
@@ -15,7 +17,7 @@ const config: HardhatUserConfig = {
         // blockNumber: 13466088 // use the same block number to make subsequent runs faster with cache.
       },
       gas: "auto", // gasLimit
-      gasPrice: 43000000000, // check the latest gas price market in https://www.ethgasstation.info/
+      gasPrice: 430000000000, // check the latest gas price market in https://www.ethgasstation.info/
       accounts: {
         mnemonic: process.env.MNEMONIC_WORDS,
         initialIndex: process.env.WALLET_INITIAL_INDEX
@@ -33,7 +35,7 @@ const config: HardhatUserConfig = {
     }
   },
   solidity: {
-    version: "0.8.0",
+    version: "0.6.12",
     settings: {
       optimizer: {
         enabled: true,
@@ -48,8 +50,12 @@ const config: HardhatUserConfig = {
   },
   paths: {
     sources: "./contracts",
+    tests: "./test",
     cache: "./cache",
     artifacts: "./artifacts"
+  },
+  mocha: {
+    timeout: 2000000
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY

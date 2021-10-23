@@ -8,3 +8,9 @@ cache
 
 #OpenZeppelin files
 .openzeppelin
+
+#typechain files
+typechain
+
+#vscode config
+.vscode

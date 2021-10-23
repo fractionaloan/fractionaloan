@@ -4,12 +4,12 @@ Fractionaloan is a decentralized protocol where lenders can mint tokenized fract
 
 ## Develop Locally
 
-1. Clone this repo and npm install
+1. Clone this repo and yarn install
 
 ```bash
   git clone https://github.com/flactionaloan/flactionaloan-contracts
   cd flactionaloan-contracts
-  npm install
+  yarn install
 ```
 
 2. Create an [Alchemy](https://www.alchemy.com/) or [Infura](https://infura.io/) account and get their api key.
