@@ -7,7 +7,8 @@
   "scripts": {
     "compile": "npx hardhat compile",
     "deploy:mainnet_forked": "npx hardhat run --network localhost scripts/deploy.ts",
-    "node": "npx hardhat node"
+    "node": "npx hardhat node",
+    "test": "npx hardhat test"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.0.0",
