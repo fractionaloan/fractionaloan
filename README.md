@@ -1,6 +1,6 @@
 ## Abstract
 
-Fractionaloan is a decentralized protocol where lenders can mint tokenized fractional ownership of their NFTs that represent their credit. 
+Fractionaloan is a decentralized protocol where lenders can mint tokenized fractional ownership of their NFTs that represent their credit.
 
 ## Develop Locally
 
@@ -40,3 +40,5 @@ You are ready to write code!
 `npm run deploy:mainnet_forked`: deploys your contracts to the mirrored version of the mainnet in your local network.
 
 `npm run node`: runs the default network configured in the `hardhat.config.ts`.
+
+`cd app && yarn dev`: runs the web app

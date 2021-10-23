@@ -122,12 +122,18 @@ describe("Vault", function () {
     const withdrawAmount = await vault._getWithdrawAmount(
       BigNumber.from(25).mul(BigNumber.from(10).pow(18))
     );
-    await vault.withdrawFractional(
-      BigNumber.from(25).mul(BigNumber.from(10).pow(18))
-    );
-    const balance = await USDCToken.connect(nftOwner).balanceOf(vault.address);
-    expect(balance.toString()).to.eq(withdrawAmount.toString());
-  });
+    await vault
+      .connect(deployer)
+      .withdrawFractional(
+        BigNumber.from(25).mul(BigNumber.from(10).pow(18))
+      );
 
-  /// withdrawAmount and USDC balance doesn't much. this needs to be fixed
+    // the vault should have no money since it's purely an intermediary
+    const vaultBalance = await USDCToken.connect(deployer).balanceOf(vault.address);
+    expect(vaultBalance.toString()).to.eq(BigNumber.from(0).toString());
+
+    // the deployer should have used 25 tokens to claim 25% of the value in USDC
+    const deployerBalance = await USDCToken.connect(deployer).balanceOf(deployer.address);
+    expect(deployerBalance.toString()).to.eq(withdrawAmount.toString());
+  });
 });
