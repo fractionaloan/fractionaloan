@@ -10,7 +10,7 @@
     "node": "npx hardhat node",
     "chain": "npx hardhat node",
     "test": "npx hardhat test",
-    "deploy": "ts-node scripts/deploy.ts"
+    "deploy": "npx hardhat run --network localhost scripts/deploy.ts"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.0.0",
