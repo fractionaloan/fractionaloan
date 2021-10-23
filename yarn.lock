@@ -443,6 +443,11 @@
     node-fetch "^2.6.0"
     semver "^6.3.0"
 
+"@openzeppelin/contracts-upgradeable@^4.3.2":
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/@openzeppelin/contracts-upgradeable/-/contracts-upgradeable-4.3.2.tgz#92df481362e366c388fc02133cf793029c744cea"
+  integrity sha512-i/pOaOtcqDk4UqsrOv735uYyTbn6dvfiuVu5hstsgV6c4ZKUtu88/31zT2BzkCg+3JfcwOfgg2TtRKVKKZIGkQ==
+
 "@sentry/core@5.30.0":
   version "5.30.0"
   resolved "https://registry.yarnpkg.com/@sentry/core/-/core-5.30.0.tgz#6b203664f69e75106ee8b5a2fe1d717379b331f3"
@@ -2481,11 +2486,6 @@ once@^1.3.0:
   integrity sha1-WDsap3WWHUsROsF9nFC6753Xa9E=
   dependencies:
     wrappy "1"
-
-openzeppelin-contracts@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/openzeppelin-contracts/-/openzeppelin-contracts-4.0.0.tgz#3b56ae3c5f6a59eaca2eacf935e3ebc18a59cd78"
-  integrity sha512-SlBeiWSJKhX9EY2Nlgev4P/LMBWWSk6wL+eqikAe9gODpxrQwLOx4Rw3vyHuJaChrUTlGyR4Gl1NqJMw0J15eQ==
 
 os-tmpdir@~1.0.2:
   version "1.0.2"
