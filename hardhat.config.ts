@@ -7,14 +7,15 @@ import "@typechain/hardhat";
 import dotenv from "dotenv";
 dotenv.config();
 
+
 const config: HardhatUserConfig = {
   defaultNetwork: "hardhat",
   networks: {
     hardhat: {
       forking: {
-        url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`
+        url: `https://eth-mainnet.alchemyapi.io/v2/${process.env.ALCHEMY_API_KEY}`,
         // url: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
-        // blockNumber: 13466088 // use the same block number to make subsequent runs faster with cache.
+        blockNumber: 13475972 // use the same block number to make subsequent runs faster with cache.
       },
       gas: "auto", // gasLimit
       gasPrice: 430000000000, // check the latest gas price market in https://www.ethgasstation.info/

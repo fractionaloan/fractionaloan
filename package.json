@@ -8,7 +8,9 @@
     "compile": "npx hardhat compile",
     "deploy:mainnet_forked": "npx hardhat run --network localhost scripts/deploy.ts",
     "node": "npx hardhat node",
-    "test": "npx hardhat test"
+    "chain": "npx hardhat node",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run --network localhost scripts/deploy.ts"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.0.0",
@@ -35,7 +37,7 @@
     "prettier": "^2.4.1",
     "prettier-plugin-solidity": "^1.0.0-beta.18",
     "ts-node": "^10.3.0",
-    "typechain": "^5.1.2",
+    "typechain": "^5.2.0",
     "typescript": "^4.4.4"
   }
 }
