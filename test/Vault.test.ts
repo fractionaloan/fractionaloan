@@ -119,10 +119,10 @@ describe("Vault", function () {
   });
 
   it("...the deployer should withdraw principal and interest from goldfinch", async () => {
-    await vault.withdrawFractional(
+    const withdrawAmount = await vault._getWithdrawAmount(
       BigNumber.from(25).mul(BigNumber.from(10).pow(18))
     );
-    const withdrawAmount = await vault._getWithdrawAmount(
+    await vault.withdrawFractional(
       BigNumber.from(25).mul(BigNumber.from(10).pow(18))
     );
     const balance = await USDCToken.connect(nftOwner).balanceOf(vault.address);
