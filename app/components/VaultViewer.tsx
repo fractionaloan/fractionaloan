@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.css'
 import { NFT } from "../common/types" 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useWalletProvider } from './WalletContext';
 import { VAULT_ADDRESS,  } from "../common/constants";
 import { poolTokensAbi } from "../../abis/PoolTokens";
@@ -28,8 +28,9 @@ const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
             const signer = provider.getSigner();
             const vault: Vault = await VaultFactory.connect(VAULT_ADDRESS, signer)
 
-
-            const contractOwnedTokens = await vault.balanceOf(signer._address)
+            console.log(await signer.getAddress());
+            console.log(VAULT_ADDRESS);
+            const contractOwnedTokens = await vault.balanceOf(await signer.getAddress());
             const totalTokens = await vault.totalSupply();
             const withdrawAmount = await vault._getWithdrawAmount(contractOwnedTokens)
 
@@ -38,6 +39,10 @@ const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
             setTotalTokens(totalTokens.toNumber());
         }
     }
+
+    useEffect(() => {
+     readVaultData();            
+    }, [])
 
     const withdraw = async(burnAmount: number) => {
         if(context?.provider) {

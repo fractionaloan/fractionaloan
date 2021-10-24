@@ -17,6 +17,7 @@ const config: HardhatUserConfig = {
         // url: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
         blockNumber: 13475972 // use the same block number to make subsequent runs faster with cache.
       },
+      chainId: 1337,
       gas: "auto", // gasLimit
       gasPrice: 430000000000, // check the latest gas price market in https://www.ethgasstation.info/
       accounts: {
