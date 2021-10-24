@@ -39,7 +39,7 @@ const Home: NextPage = () => {
       </main>
 
 
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }

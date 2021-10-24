@@ -90,6 +90,7 @@
   border-radius: 40px;
   transition: color 0.15s ease, border-color 0.15s ease;
   width: 250px;
+  background:transparent
 }
 
 .card:hover,
@@ -97,6 +98,7 @@
 .card:active {
   color: #0070f3!important;
   border-color: #0070f3!important;
+  cursor: pointer;
 }
 
 .card h2 {

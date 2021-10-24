@@ -21,3 +21,14 @@ a {
 .main-logo {
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
 }
+
+input {
+  border: solid 5px black;
+  border-radius: 5px;
+  font-size: 2rem;
+  padding:1rem 0.5rem;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+  background-color: transparent;
+  margin-top: 2rem;
+}
