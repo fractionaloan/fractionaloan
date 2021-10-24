@@ -75,7 +75,7 @@ const Fractionalizer = ({nft}: FractionalizerProps) => {
                     <p className={styles.description}>
                         First, approve your NFT to transfer it.
                     </p>
-                    <button onClick={onApprove}> Approve </button>
+                    <button onClick={onApprove} className={styles.card} style={{'borderColor': '#F39C12', 'fontSize':'1.5rem', 'fontFamily':'inherit'}}> Approve </button>
                 </>
             }
 
@@ -86,7 +86,7 @@ const Fractionalizer = ({nft}: FractionalizerProps) => {
                         Now, choose the total supply of ERC20 tokens to mint.
                     </p>
                     <input type="number" id="tentacles" name="tentacles" value={totalSupply} onChange={e => setTotalSupply(Number(e.target.value))}></input>
-                    <button onClick={() => {onMint(totalSupply)}}> Mint </button>
+                    <button onClick={() => {onMint(totalSupply)}} className={styles.card} style={{'borderColor': '#F39C12', 'fontSize':'1.5rem', 'fontFamily':'inherit', 'marginTop':'4rem'}}> Mint </button>
                 </>
             }
 
