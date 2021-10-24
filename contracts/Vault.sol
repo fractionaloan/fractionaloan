@@ -47,6 +47,13 @@ contract Vault is ERC20Upgradeable, IERC721Receiver, SafeERC20Transfer {
   }
 
   /// @dev this function should be private but I make it public to make it easy to test in the hackathon.
+  function getInterestAndPrincipal() public view returns (uint256, uint256) {
+    (uint256 availableInterest, uint256 availablePrincipal) = tranchedPool
+      .availableToWithdraw(tokenId);
+    return (availableInterest, availablePrincipal);
+  }
+
+  /// @dev this function should be private but I make it public to make it easy to test in the hackathon.
   function _getWithdrawAmount(uint256 _amount) public view returns (uint256) {
     /// verify amount <= holder's balance
     (uint256 availableInterest, uint256 availablePrincipal) = tranchedPool

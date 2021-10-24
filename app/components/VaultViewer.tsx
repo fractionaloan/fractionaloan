@@ -18,7 +18,10 @@ interface VaultViewerProps {
 const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
     const context = useWalletProvider();
     const [burnAmount, setBurnAmount] = useState<number>(0);
+    const [withdrawAmount, setWithdrawAmount] = useState<number>(0);
     const [availableAmount, setAvailableAmount] = useState<number>(0);
+    const [availableInterestAmount, setAvailableInterestAmount] = useState<number>(0);
+    const [availablePrincipalAmount, setAvailablePrincipalAmount] = useState<number>(0);
     const [ownedTokens, setOwnedTokens] = useState<number>(0);
     const [totalTokens, setTotalTokens] = useState<number>(0);
 
@@ -32,9 +35,16 @@ const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
             console.log(VAULT_ADDRESS);
             const contractOwnedTokens = await vault.balanceOf(await signer.getAddress());
             const totalTokens = await vault.totalSupply();
-            const withdrawAmount = await vault._getWithdrawAmount(contractOwnedTokens)
+            const availableWithdrawAmount = await vault._getWithdrawAmount(contractOwnedTokens);
+            const interestAndPrincipal = await vault.getInterestAndPrincipal();
+            // it looks like the first index should return the interest available but it returns principal?
+            // https://github.com/goldfinch-eng/goldfinch-contracts/blob/55a7799bd7d30778bc026ab6b4f9b956115c76ff/v2.0/protocol/core/TranchedPool.sol#L466
+            const withdrawInterestAmount = interestAndPrincipal[1];
+            const withdrawPrincipalAmount = interestAndPrincipal[0];
 
-            setAvailableAmount(withdrawAmount.toNumber());
+            setAvailableAmount(availableWithdrawAmount.toNumber());
+            setAvailableInterestAmount(withdrawInterestAmount.toNumber());
+            setAvailablePrincipalAmount(withdrawPrincipalAmount.toNumber());
             setOwnedTokens(contractOwnedTokens.toNumber());
             setTotalTokens(totalTokens.toNumber());
         }
@@ -84,7 +94,13 @@ const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
                 ⚠️ NFT owner has not yet minted ERC20 tokenized shares ⚠️
             </p>}
             <p>
-                Available Amount to Withdraw: {availableAmount}
+                Available Amount to Withdraw: {availableAmount} USDC
+            </p>
+            <p>
+                Available Principal to Withdraw: {availablePrincipalAmount} USDC
+            </p>
+            <p>
+                Available Interest to Withdraw: {availableInterestAmount} USDC
             </p>
             <p>
                 Owned tokens: {ownedTokens}
@@ -99,7 +115,19 @@ const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
                 Burn tokens
             </p>
             </div>}
-            <input type="number" id="tentacles" name="tentacles" value={burnAmount} onChange={e => setBurnAmount(Number(e.target.value))}></input>
+            <input type="number" id="tentacles" name="tentacles" value={burnAmount} onChange={async (e) => {
+                setBurnAmount(Number(e.target.value));
+                if(context?.provider) {
+                    const provider = context?.provider;
+                    const signer = provider.getSigner();
+                    const vault: Vault = await VaultFactory.connect(VAULT_ADDRESS, signer)
+                    const withdrawAmount = await vault._getWithdrawAmount(String(e.target.value));
+                    setWithdrawAmount(withdrawAmount.toNumber());
+                    console.log('withdrawAmount ==>', withdrawAmount);
+                }
+            }
+            }></input>
+            <p>withdraw amount: {withdrawAmount} USDC</p>
             <button onClick={onWithdraw} disabled={totalTokens === 0}> Burn and withdraw </button>
         </>
     )
