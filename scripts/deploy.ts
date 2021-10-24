@@ -16,8 +16,8 @@ const CHAIN_ID = 4;
 const JSON_RPC_ENDPOINT = "127.0.0.1:8545";
 // const TEST_PRIVATE_KEY = "0x84a8bb71450a1b82be2b1cdd25d079cbf23dc8054e94c47ad14510aa967f45de";
 
-const TEST_WALLET = "0x959fd7ef9089b7142b6b908dc3a8af7aa8ff0fa1"
-const TEST_PRIVATE_KEY = "0xabf82ff96b463e9d82b83cb9bb450fe87e6166d4db6d7021d0c71d7e960d5abe"
+const TEST_WALLET = "0xf986f4620340832c84b71f72da981c18a69eebb1"
+const TEST_PRIVATE_KEY = "0x92714bfb5004cb3d173198146edbf36376e16752e4fe3aa0091591355859e727"
 
 const GOLDFINCH_ADMIN_ADDRESS = "0xa083880f7a5df37bf00a25380c3eb9af9cd92d8f";
 const NFT_OWNER_ADDRESS = "0xb39Fbb76E7677fF97397a1683D01F04df4cFeD82";
@@ -34,7 +34,7 @@ async function start() {
   if (!args.chainId) {
     throw new Error('--chainId chain ID is required');
   }
-  
+
   const provider = new JsonRpcProvider();
   const wallet = new Wallet(TEST_PRIVATE_KEY, provider);
   const goldfinchConfig = new ethers.Contract(
@@ -57,7 +57,7 @@ async function start() {
   );
 
   console.log(`Deployed contract to ${vault.address}`)
-  
+
   console.log("goldfinch")
   // use goldfinch admin signer to approve vault contract and test wallet
   await hre.network.provider.request({
@@ -91,4 +91,3 @@ start().catch((e: Error) => {
     console.error(e);
     process.exit(1);
 });
-  
