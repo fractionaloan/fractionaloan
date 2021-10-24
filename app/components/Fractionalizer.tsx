@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useWalletProvider } from './WalletContext';
 import { VAULT_ADDRESS, POOL_TOKEN_ID } from "../common/constants";
 import { poolTokensAbi } from "../../abis/PoolTokens";
-import {ethers } from "ethers";
+import { ethers } from "ethers";
 import {
     Vault__factory as VaultFactory,
     Vault
