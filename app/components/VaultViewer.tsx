@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css'
-import { NFT } from "../common/types" 
+import { PAGE_AUTO_REFRESH_INTERVAL_MS } from "../common/constants"
 import { useEffect, useState } from "react";
 import { useWalletProvider } from './WalletContext';
 import { VAULT_ADDRESS,  } from "../common/constants";
@@ -40,9 +40,19 @@ const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
         }
     }
 
+    // Refresh the vault data every PAGE_AUTO_REFRESH_INTERVAL_MS so the user doesnt have to refresh
+    // theres probably some cool websocket thing that does this?
+    const [_, setTime] = useState(Date.now());
     useEffect(() => {
-     readVaultData();            
-    }, [])
+    const interval = setInterval(() => {
+        readVaultData();
+        setTime(Date.now())
+    }, PAGE_AUTO_REFRESH_INTERVAL_MS);
+        return () => {
+            clearInterval(interval);
+        };
+    }, []);
+
 
     const withdraw = async(burnAmount: number) => {
         if(context?.provider) {
@@ -70,6 +80,9 @@ const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
             <p className={styles.description}>
                 Debt Details
             </p>
+            {totalTokens === 0 && <p>
+                ⚠️ NFT owner has not yet minted ERC20 tokenized shares ⚠️
+            </p>}
             <p>
                 Available Amount to Withdraw: {availableAmount}
             </p>
@@ -79,11 +92,15 @@ const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
             <p>
                 Total tokens: {totalTokens}
             </p>
+            {totalTokens !== 0 && <div><p>
+                Percent Ownership of Pool: {((ownedTokens / totalTokens) * 100).toFixed(2) + '%'}
+            </p>
             <p className={styles.description}>
                 Burn tokens
             </p>
+            </div>}
             <input type="number" id="tentacles" name="tentacles" value={burnAmount} onChange={e => setBurnAmount(Number(e.target.value))}></input>
-            <button onClick={onWithdraw}> Burn and withdraw </button>
+            <button onClick={onWithdraw} disabled={totalTokens === 0}> Burn and withdraw </button>
         </>
     )
 }
