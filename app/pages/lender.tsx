@@ -30,7 +30,6 @@ const Home: NextPage = () => {
           {selectedNFT && <Fractionalizer nft={selectedNFT}/>}
 
       </main>
-      <Footer/>
     </div>
   )
 }

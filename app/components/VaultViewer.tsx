@@ -128,7 +128,7 @@ const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
             }
             }></input>
             <p>withdraw amount: {withdrawAmount} USDC</p>
-            <button onClick={onWithdraw} disabled={totalTokens === 0}> Burn and withdraw </button>
+            <button onClick={onWithdraw} disabled={totalTokens === 0} className={styles.card} style={{'fontSize':'1rem', 'fontFamily':'inherit', 'padding':'0.9rem'}}> Burn and withdraw </button>
         </>
     )
 }
