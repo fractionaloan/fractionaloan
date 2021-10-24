@@ -42,3 +42,30 @@ You are ready to write code!
 `npm run node`: runs the default network configured in the `hardhat.config.ts`.
 
 `cd app && yarn dev`: runs the web app
+
+
+## Developing on the App
+
+### Start Hardhat node
+
+First, run `yarn node` to start your own hardhat test network. This will print out a few wallets with existing ETH. 
+
+Select one of these public/private key pairs to use as your own test wallet. 
+
+
+### Deploy contracts
+
+In `scripts/deploy.ts` change `TEST_WALLET` and `TEST_PRIVATE_KEY` to be your own wallet, then run `yarn deploy`
+
+You should see a printed out address that says `Deployed contract to {{address}}`
+### Start App
+
+Set `VAULT_ADDRESS` in `app/common/contants` to match the deployed address.
+
+Then start the app with 
+```
+cd app/
+yarn install && yarn dev
+```
+
+
