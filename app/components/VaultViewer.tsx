@@ -19,6 +19,8 @@ const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
     const context = useWalletProvider();
     const [burnAmount, setBurnAmount] = useState<number>(0);
     const [availableAmount, setAvailableAmount] = useState<number>(0);
+    const [availableInterestAmount, setAvailableInterestAmount] = useState<number>(0);
+    const [availablePrincipalAmount, setAvailablePrincipalAmount] = useState<number>(0);
     const [ownedTokens, setOwnedTokens] = useState<number>(0);
     const [totalTokens, setTotalTokens] = useState<number>(0);
 
@@ -33,8 +35,15 @@ const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
             const contractOwnedTokens = await vault.balanceOf(await signer.getAddress());
             const totalTokens = await vault.totalSupply();
             const withdrawAmount = await vault._getWithdrawAmount(contractOwnedTokens)
+            const interestAndPrincipal = await vault.getInterestAndPrincipal();
+            // it looks like the first index should return the interest available but it returns principal?
+            // https://github.com/goldfinch-eng/goldfinch-contracts/blob/55a7799bd7d30778bc026ab6b4f9b956115c76ff/v2.0/protocol/core/TranchedPool.sol#L466
+            const withdrawInterestAmount = interestAndPrincipal[1];
+            const withdrawPrincipalAmount = interestAndPrincipal[0];
 
             setAvailableAmount(withdrawAmount.toNumber());
+            setAvailableInterestAmount(withdrawInterestAmount.toNumber());
+            setAvailablePrincipalAmount(withdrawPrincipalAmount.toNumber());
             setOwnedTokens(contractOwnedTokens.toNumber());
             setTotalTokens(totalTokens.toNumber());
         }
@@ -85,6 +94,11 @@ const VaultViewer = ({vaultAddress}: VaultViewerProps) => {
             </p>}
             <p>
                 Available Amount to Withdraw: {availableAmount}
+            <p>
+                Available Principal to Withdraw: {availablePrincipalAmount} USDC
+            </p>
+            <p>
+                Available Interest to Withdraw: {availableInterestAmount} USDC
             </p>
             <p>
                 Owned tokens: {ownedTokens}
