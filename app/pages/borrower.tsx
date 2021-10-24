@@ -25,7 +25,7 @@ const Home: NextPage = () => {
           {selectedVault && <VaultViewer vaultAddress={selectedVault}/>}
 
       </main>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   )
 }
